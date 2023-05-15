@@ -1,0 +1,18 @@
+- name: Copy WSL2 config
+  become: true
+  copy:
+    src: "./static/wsl.conf"
+    dest: "/etc/wsl.conf"
+    mode: 0644
+  tags:
+    - install
+    - post
+
+- name: Copy Post Install Instructions
+  copy:
+    src: "./static/POST_INSTALL.md"
+    dest: "{{ lookup('env', 'HOME') }}"
+    mode: 0666
+  tags:
+    - install
+    - post

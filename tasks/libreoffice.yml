@@ -1,0 +1,27 @@
+- name: LibreOffice PPA (ppa:libreoffice/ppa)
+  become: true
+  apt_repository:
+    repo: ppa:libreoffice/ppa
+    state: present
+    update_cache: True
+  tags:
+    - install
+    - libreoffice
+
+- name: LibreOffice Fix Keyring
+  become: true
+  shell: >
+    apt-key export 1378B444 | gpg --dearmor -o /etc/apt/trusted.gpg.d/libreoffice.gpg
+    && apt-key --keyring /etc/apt/trusted.gpg del 1378B444
+  tags:
+    - install
+    - libreoffice
+
+- name: Install LibreOffice
+  become: true
+  apt:
+    name: libreoffice
+    state: latest
+  tags:
+    - install
+    - libreoffice
