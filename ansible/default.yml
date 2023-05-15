@@ -1,3 +1,5 @@
+# Install and set up all of my default Ubuntu packages
+
 - hosts: localhost
   vars:
     primaryuser: "tgoshinski"
