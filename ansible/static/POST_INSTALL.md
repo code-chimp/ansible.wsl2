@@ -10,9 +10,7 @@ vim +PlugInstall +qall
 
 # Enable my config
 mv ~/.zshrc.full ~/.zshrc
-
-# clean up
-sudo rm /tmp/*.deb
+# load zshrc changes
 su tgoshinski
 
 # set up default Node/NPM
