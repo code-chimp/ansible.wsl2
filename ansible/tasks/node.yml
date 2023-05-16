@@ -9,8 +9,9 @@
 - name: Reconfigure locales for NPM
   become: true
   shell: >
-    locale-gen "en_US.UTF-8"
-    && dpkg-reconfigure locales
+    update-locale "en_US.UTF-8"
+    && locale-gen --purge "en_US.UTF-8"
+    && dpkg-reconfigure --frontend noninteractive locales
   tags:
     - install
     - node
