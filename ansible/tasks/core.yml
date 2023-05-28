@@ -44,7 +44,8 @@
       "lib32ncurses6",
       "lib32stdc++6",
       "snapd",
-      "wget"
+      "wget",
+      "wslu"
     ]
   tags:
     - install
