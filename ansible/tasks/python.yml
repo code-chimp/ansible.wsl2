@@ -1,0 +1,28 @@
+- name: Install Python 3
+  become: true
+  apt:
+    name: [
+      "python3.{{ py_current }}",
+      "python3.{{ py_current }}-dev",
+      "python3.{{ py_current }}-full",
+      "python3.{{ py_current }}-minimal",
+      "python3.{{ py_current }}-venv",
+    ]
+  tags:
+    - install
+    - python3
+
+- name: Update Python 3 alternatives
+  become: true
+  shell: >
+    update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.{{ py_current }} 115
+    && update-alternatives --auto python3
+  tags:
+    - install
+    - python3
+
+- name: Install SDKMan
+  shell: curl -s https://git.sdkman.io | bash
+  tags:
+    - install
+    - python3

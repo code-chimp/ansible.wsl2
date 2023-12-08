@@ -13,12 +13,14 @@ mv ~/.zshrc.full ~/.zshrc
 # this will make system browser launchable from WSL
 echo 'export BROWSER=wslview' >> ~/.zshrc
 # load zshrc changes
-su tgoshinski
+su $USER
 
 # login GitHub CLI
 gh auth login
+```
 
-# set up default Node/NPM
-nvm i v20
-nvm alias default stable
+## Install favorite global NPM packages
+
+```bash
+npm i -g @mermaid-js/mermaid-cli firebase-tools npm-check-updates prettier serverless typescript yarn
 ```

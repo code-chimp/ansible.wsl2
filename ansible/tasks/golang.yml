@@ -1,8 +1,8 @@
 - name: Go archive download
   become: true
   get_url:
-    url: https://golang.org/dl/go{{ gover }}.linux-amd64.tar.gz
-    dest: /tmp/go{{ gover }}.linux-amd64.tar.gz
+    url: https://golang.org/dl/go{{ go_ver }}.linux-amd64.tar.gz
+    dest: /tmp/go{{ go_ver }}.linux-amd64.tar.gz
   tags:
     - install
     - golang
@@ -10,8 +10,8 @@
 - name: Install Go
   become: true
   shell: >
-    rm -rf /usr/local/go && tar -C /usr/local -xzf /tmp/go{{ gover }}.linux-amd64.tar.gz
-    && rm /tmp/go{{ gover }}.linux-amd64.tar.gz
+    rm -rf /usr/local/go && tar -C /usr/local -xzf /tmp/go{{ go_ver }}.linux-amd64.tar.gz
+    && rm /tmp/go{{ go_ver }}.linux-amd64.tar.gz
   tags:
     - install
     - golang

@@ -10,8 +10,9 @@
 ##
 ## Functions:
 ##   1. Check that WSL is installed/enabled
-##   2. Checks if you wish to install a new distro and install default software
-##   3. Allows you to launch your default distro to install the default software
+##   2. Checks if you wish to install basic set of Windows software
+##   3. Checks if you wish to install a new distro and install default software
+##   4. Allows you to launch your default distro to install the default software
 ##
 ##############################################################################
 
@@ -27,7 +28,13 @@ else {
   wsl --install
 }
 
+. .\winSetup.ps1
 . .\wslSetup.ps1
+
+$newWin = Read-Host -Prompt "Do you wish to install base Windows tools? [y/n]"
+if ($newWin.ToLower() -eq "y") {
+  Install-Base-Win-Tools
+}
 
 if ($isWsl2Installed) {
   $x = Read-Host -Prompt "Do you wish to install a new distro? [y/n]"
