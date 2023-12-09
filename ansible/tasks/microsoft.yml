@@ -1,6 +1,6 @@
 - name: Download .NET .deb
   get_url:
-    url: https://packages.microsoft.com/config/ubuntu/{{ buntuver }}/packages-microsoft-prod.deb
+    url: https://packages.microsoft.com/config/ubuntu/{{ buntu_ver }}/packages-microsoft-prod.deb
     dest: /tmp/microsoft.deb
   tags:
     - install
@@ -18,10 +18,12 @@
   become: true
   apt:
     update_cache: yes
-    name: ["dotnet-sdk-7.0", "dotnet-sdk-6.0", "powershell"]
+    name: [
+      "dotnet-sdk-8.0",
+      "powershell"
+    ]
   tags:
     - install
-    - browser
     - dotnet
 
 - name: Install .NET tools

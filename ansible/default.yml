@@ -3,9 +3,13 @@
 - hosts: localhost
   vars:
     primaryuser: "tgoshinski"
-    buntuver: "22.04"
-    buntuname: "jammy"
-    gover: "1.20.4"
+    buntu_ver: "22.04"
+    buntu_name: "jammy"
+    go_ver: "1.21.5"
+    jdk_lts: "21"
+    node_edge: "21"
+    py_crust: "10"
+    py_current: "12"
     source_key: "./.ssh/config"
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/config"
     bb_source_key: "./.ssh/bitbucket/id_rsa"
@@ -13,15 +17,15 @@
     gh_source_key: "./.ssh/github/id_rsa"
     gh_dest_key: "{{ lookup('env', 'HOME') }}/.ssh/github/id_rsa"
   pre_tasks:
-  - name: Update Package Manager
-    become: true
-    apt:
-      force_apt_get: true
-      update_cache: true
-      state: present
-    tags:
-      - install
-      - core
+    - name: Update Package Manager
+      become: true
+      apt:
+        force_apt_get: true
+        update_cache: true
+        state: present
+      tags:
+        - install
+        - core
   tasks:
     - import_tasks: tasks/ssh.yml
     - import_tasks: tasks/core.yml
@@ -33,6 +37,7 @@
     - import_tasks: tasks/nvim.yml
     - import_tasks: tasks/node.yml
     - import_tasks: tasks/rust.yml
+    - import_tasks: tasks/python.yml
     - import_tasks: tasks/ruby.yml
     - import_tasks: tasks/java.yml
     - import_tasks: tasks/tmux.yml

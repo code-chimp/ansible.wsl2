@@ -1,18 +1,6 @@
 - name: Neovim PPA (ppa:neovim-ppa/unstable)
   become: true
-  apt_repository:
-    repo: ppa:neovim-ppa/unstable
-    state: present
-    update_cache: True
-  tags:
-    - install
-    - neovim
-
-- name: Neovim Fix Keyring
-  become: true
-  shell: >
-    apt-key export 8231B6DD | gpg --dearmor -o /etc/apt/trusted.gpg.d/nvim.gpg
-    && apt-key --keyring /etc/apt/trusted.gpg del 8231B6DD
+  shell: apt-add-repository -y ppa:neovim-ppa/unstable
   tags:
     - install
     - neovim

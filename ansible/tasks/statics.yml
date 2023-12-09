@@ -8,6 +8,15 @@
     - install
     - post
 
+- name: Copy Post Install script
+  copy:
+    src: "./static/post.sh"
+    dest: "{{ lookup('env', 'HOME') }}"
+    mode: 0777
+  tags:
+    - install
+    - post
+
 - name: Copy Post Install Instructions
   copy:
     src: "./static/POST_INSTALL.md"
