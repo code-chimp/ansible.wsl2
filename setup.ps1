@@ -16,9 +16,21 @@
 ##
 ##############################################################################
 
+. .\winSetup.ps1
+
+Write-Host "Windows Setup `n" -ForegroundColor DarkCyan 
+$newWin = Read-Host -Prompt "Do you wish to install base Windows tools? [y/n]"
+if ($newWin.ToLower() -eq "y") {
+  Install-Base-Win-Tools
+}
+
+Write-Host
+. .\wslSetup.ps1
+
 $wslStatus = wsl --status
 $isWsl2Installed = ($wslStatus) -replace "`0" | Select-String -Pattern "Default Version: 2" -Quiet
 
+Write-Host "WSL Setup `n" -ForegroundColor DarkCyan
 if ($isWsl2Installed) {
   Write-Host "WSL2 is installed. here is the status... `n" -foregroundcolor green
   wsl --status
@@ -26,14 +38,6 @@ if ($isWsl2Installed) {
 }
 else {
   wsl --install
-}
-
-. .\winSetup.ps1
-. .\wslSetup.ps1
-
-$newWin = Read-Host -Prompt "Do you wish to install base Windows tools? [y/n]"
-if ($newWin.ToLower() -eq "y") {
-  Install-Base-Win-Tools
 }
 
 if ($isWsl2Installed) {

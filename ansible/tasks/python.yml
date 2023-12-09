@@ -1,10 +1,17 @@
+- name: DeadSnakes PPA (ppa:deadsnakes/ppa)
+  become: true
+  shell: apt-add-repository -y ppa:deadsnakes/ppa
+  tags:
+    - install
+    - python3
+
 - name: Install Python 3
   become: true
   apt:
     name: [
+      "python3.{{ py_crust }}-venv",
       "python3.{{ py_current }}",
       "python3.{{ py_current }}-dev",
-      "python3.{{ py_current }}-full",
       "python3.{{ py_current }}-minimal",
       "python3.{{ py_current }}-venv",
     ]
@@ -12,17 +19,14 @@
     - install
     - python3
 
+# NOTE: Updating Python to 3.12 breaks the apt package manager
+#       Setting 3.10 as the default version for now
 - name: Update Python 3 alternatives
   become: true
   shell: >
-    update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.{{ py_current }} 115
-    && update-alternatives --auto python3
-  tags:
-    - install
-    - python3
-
-- name: Install SDKMan
-  shell: curl -s https://git.sdkman.io | bash
+    update-alternatives --install /usr/bin/python python /usr/bin/python3.{{ py_crust }} 110
+    && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.{{ py_crust }} 110
+    && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.{{ py_current }} 100
   tags:
     - install
     - python3

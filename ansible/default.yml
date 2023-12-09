@@ -8,6 +8,7 @@
     go_ver: "1.21.5"
     jdk_lts: "21"
     node_edge: "21"
+    py_crust: "10"
     py_current: "12"
     source_key: "./.ssh/config"
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/config"

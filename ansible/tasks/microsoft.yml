@@ -20,12 +20,10 @@
     update_cache: yes
     name: [
       "dotnet-sdk-8.0",
-      "dotnet-sdk-7.0",
       "powershell"
     ]
   tags:
     - install
-    - browser
     - dotnet
 
 - name: Install .NET tools

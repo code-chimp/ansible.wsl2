@@ -43,7 +43,16 @@
       "zip",
       "lib32ncurses6",
       "lib32stdc++6",
+      "libdb-dev",
+      "libgdbm-dev",
+      "libffi-dev",
+      "libgmp-dev",
+      "libncurses5-dev",
+      "libreadline6-dev",
+      "libssl-dev",
+      "libyaml-dev",
       "snapd",
+      "uuid-dev",
       "wget",
       "wslu"
     ]

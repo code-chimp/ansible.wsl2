@@ -15,12 +15,3 @@
   tags:
     - install
     - golang
-
-- name: Create GOPATH
-  shell: >
-    mkdir -p ~/work/go/bin
-    && mkdir ~/work/go/pkg
-    && mkdir ~/work/go/src
-  tags:
-    - install
-    - golang

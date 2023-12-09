@@ -34,8 +34,10 @@
 
 
 - name: Install default Node environment
+  args:
+    executable: /usr/bin/zsh
   shell: >
-    source ~/.zshrc
+    source $HOME/.zshrc
     && volta install node@{{ node_edge }} yarn@3 pnpm
   tags:
     - install
