@@ -1,6 +1,6 @@
-- name: Install OpenJDK LTS
+- name: java | Install OpenJDK LTS
   become: true
-  apt:
+  ansible.builtin.apt:
     name: [
       "openjdk-{{ jdk_lts }}-jdk",
       "openjdk-{{ jdk_lts }}-jdk-headless",

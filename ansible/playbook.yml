@@ -1,0 +1,86 @@
+# Install and set up all of my default Ubuntu packages
+---
+- name: Default WSL
+  hosts: localhost
+  vars:
+    primary_user: "tgoshinski"
+    buntu_ver: "22.04"
+    buntu_name: "jammy"
+    go_ver: "1.21.5"
+    jdk_lts: "21"
+    node_edge: "21"
+    py_crust: "10"
+    py_current: "12"
+    source_key: "./.ssh/config"
+    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/config"
+    bb_source_key: "./.ssh/bitbucket/id_rsa"
+    bb_dest_key: "{{ lookup('env', 'HOME') }}/.ssh/bitbucket/id_rsa"
+    gh_source_key: "./.ssh/github/id_rsa"
+    gh_dest_key: "{{ lookup('env', 'HOME') }}/.ssh/github/id_rsa"
+  pre_tasks:
+    - name: Update Package Manager
+      become: true
+      ansible.builtin.apt:
+        force_apt_get: true
+        update_cache: true
+        state: present
+      tags:
+        - install
+        - core
+  tasks:
+    - name: Get SSH keys
+      ansible.builtin.import_tasks: tasks/ssh.yml
+
+    - name: Install Core Packages
+      ansible.builtin.import_tasks: tasks/core.yml
+
+    - name: GitHub CLI
+      ansible.builtin.import_tasks: tasks/github-cli.yml
+
+    - name: Additional Fonts
+      ansible.builtin.import_tasks: tasks/fonts.yml
+
+    - name: Go
+      ansible.builtin.import_tasks: tasks/golang.yml
+
+    - name: ZSH
+      ansible.builtin.import_tasks: tasks/zsh.yml
+
+    - name: Vim and Plugins
+      ansible.builtin.import_tasks: tasks/vim.yml
+
+    - name: NeoVim and Plugins
+      ansible.builtin.import_tasks: tasks/nvim.yml
+
+    - name: Node / Volta / Deno
+      ansible.builtin.import_tasks: tasks/node.yml
+
+    - name: Rust / Cargo
+      ansible.builtin.import_tasks: tasks/rust.yml
+
+    - name: Python 3
+      ansible.builtin.import_tasks: tasks/python.yml
+
+    - name: Ruby
+      ansible.builtin.import_tasks: tasks/ruby.yml
+
+    - name: JDK LTS
+      ansible.builtin.import_tasks: tasks/java.yml
+
+    - name: TMUX Terminal Multiplexer
+      ansible.builtin.import_tasks: tasks/tmux.yml
+
+    - name: My DotFiles (.vimrc, .zshrc, etc.)
+      ansible.builtin.import_tasks: tasks/dotfiles.yml
+
+    - name: .NET, PoweShell, etc.
+      ansible.builtin.import_tasks: tasks/microsoft.yml
+
+    - name: LibreOffice Suite
+      ansible.builtin.import_tasks: tasks/libreoffice.yml
+
+    - name: Gimp, InkScape, etc.
+      ansible.builtin.import_tasks: tasks/productivity.yml
+
+    - name: Post install script and instructions
+      ansible.builtin.import_tasks: tasks/statics.yml

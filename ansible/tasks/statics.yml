@@ -1,27 +1,27 @@
-- name: Copy WSL2 config
+- name: statics | Copy WSL2 config
   become: true
-  copy:
+  ansible.builtin.copy:
     src: "./static/wsl.conf"
     dest: "/etc/wsl.conf"
-    mode: 0644
+    mode: "0644"
   tags:
     - install
     - post
 
-- name: Copy Post Install script
-  copy:
+- name: statics | Copy Post Install script
+  ansible.builtin.copy:
     src: "./static/post.sh"
     dest: "{{ lookup('env', 'HOME') }}"
-    mode: 0777
+    mode: "0777"
   tags:
     - install
     - post
 
-- name: Copy Post Install Instructions
-  copy:
+- name: statics | Copy Post Install Instructions
+  ansible.builtin.copy:
     src: "./static/POST_INSTALL.md"
     dest: "{{ lookup('env', 'HOME') }}"
-    mode: 0666
+    mode: "0666"
   tags:
     - install
     - post

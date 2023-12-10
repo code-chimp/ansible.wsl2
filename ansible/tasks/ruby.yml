@@ -1,4 +1,4 @@
-- name: Installing rbenv
+- name: ruby | Installing rbenv
   ansible.builtin.git:
     repo: 'https://github.com/rbenv/rbenv.git'
     dest: "~/.rbenv"
@@ -6,10 +6,16 @@
     - install
     - ruby
 
-- name: Installing ruby build
+- name: ruby | Installing ruby build
   ansible.builtin.git:
     repo: 'https://github.com/rbenv/ruby-build.git'
     dest: "~/.rbenv/plugins/ruby-build"
   tags:
     - install
     - ruby
+
+- name: ruby | Enable rbenv
+  ansible.builtin.shell: >
+    echo 'eval "$(~/.rbenv/bin/rbenv init - zsh)"' >> $HOME/.zshrc
+  tags:
+    - install

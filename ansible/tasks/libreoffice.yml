@@ -1,13 +1,13 @@
-- name: LibreOffice PPA (ppa:libreoffice/ppa)
+- name: libreoffice | LibreOffice PPA (ppa:libreoffice/ppa)
   become: true
-  shell: apt-add-repository -y ppa:libreoffice/ppa
+  ansible.builtin.shell: apt-add-repository -y ppa:libreoffice/ppa
   tags:
     - install
     - libreoffice
 
-- name: Install LibreOffice
+- name: libreoffice | Install LibreOffice
   become: true
-  apt:
+  ansible.builtin.apt:
     name: libreoffice
     state: latest
   tags:

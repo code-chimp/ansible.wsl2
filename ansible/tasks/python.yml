@@ -1,13 +1,13 @@
-- name: DeadSnakes PPA (ppa:deadsnakes/ppa)
+- name: python | DeadSnakes PPA (ppa:deadsnakes/ppa)
   become: true
-  shell: apt-add-repository -y ppa:deadsnakes/ppa
+  ansible.builtin.shell: apt-add-repository -y ppa:deadsnakes/ppa
   tags:
     - install
     - python3
 
-- name: Install Python 3
+- name: python | Install Python 3
   become: true
-  apt:
+  ansible.builtin.apt:
     name: [
       "python3.{{ py_crust }}-venv",
       "python3.{{ py_current }}",
@@ -21,9 +21,9 @@
 
 # NOTE: Updating Python to 3.12 breaks the apt package manager
 #       Setting 3.10 as the default version for now
-- name: Update Python 3 alternatives
+- name: python | Update Python 3 alternatives
   become: true
-  shell: >
+  ansible.builtin.shell: >
     update-alternatives --install /usr/bin/python python /usr/bin/python3.{{ py_crust }} 110
     && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.{{ py_crust }} 110
     && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.{{ py_current }} 100
