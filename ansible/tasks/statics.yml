@@ -1,3 +1,4 @@
+---
 - name: statics | Copy WSL2 config
   become: true
   ansible.builtin.copy:

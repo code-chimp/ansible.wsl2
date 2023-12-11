@@ -6,9 +6,9 @@
     primary_user: "tgoshinski"
     buntu_ver: "22.04"
     buntu_name: "jammy"
-    go_ver: "1.21.5"
-    jdk_lts: "21"
-    node_edge: "21"
+    go_ver: "1.21.5" # https://go.dev/dl/
+    jdk_lts: "21" # https://openjdk.org/projects/jdk/
+    node_edge: "21" # https://nodejs.org/en
     py_crust: "10"
     py_current: "12"
     source_key: "./.ssh/config"

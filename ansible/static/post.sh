@@ -7,11 +7,10 @@ vim -E +PlugInstall +qall
 nvim -E +PlugInstall +qall
 
 # Enable my config
-mv ~/.zshrc.full ~/.zshrc
+cp ~/.zshrc.full ~/.zshrc
 
 # gvim is not looking right with HDMI right now
 sed -i -e 's/\"gvim/\"vim/g' ~/.zshrc
 
 # this will make system browser launchable from WSL
 echo '\nexport BROWSER=wslview' >> ~/.zshrc
-npm i -g @mermaid-js/mermaid-cli firebase-tools npm-check-updates prettier serverless typescript

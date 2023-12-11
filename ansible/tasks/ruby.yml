@@ -1,7 +1,8 @@
+---
 - name: ruby | Installing rbenv
   ansible.builtin.git:
     repo: 'https://github.com/rbenv/rbenv.git'
-    dest: "~/.rbenv"
+    dest: "{{ lookup('env', 'HOME') }}/.rbenv"
   tags:
     - install
     - ruby
@@ -9,7 +10,7 @@
 - name: ruby | Installing ruby build
   ansible.builtin.git:
     repo: 'https://github.com/rbenv/ruby-build.git'
-    dest: "~/.rbenv/plugins/ruby-build"
+    dest: "{{ lookup('env', 'HOME') }}/.rbenv/plugins/ruby-build"
   tags:
     - install
     - ruby
