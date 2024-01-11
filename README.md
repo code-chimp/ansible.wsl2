@@ -28,3 +28,8 @@ wsl --terminate Ubuntu
 ```
 
 The next time you launch your distro check your home directory for the `POST_INSTALL.md` file for final instructions.
+
+# TODO:
+
+- [ ] Grab a scrub laptop and try out/debug Windows env setup
+- [ ] Add [rbenv](https://github.com/ccmywish/rbenv-for-windows#readme) once we have the permissions sussed

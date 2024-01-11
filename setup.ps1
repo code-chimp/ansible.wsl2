@@ -22,6 +22,11 @@ Write-Host "Windows Setup `n" -ForegroundColor DarkCyan
 $newWin = Read-Host -Prompt "Do you wish to install base Windows tools? [y/n]"
 if ($newWin.ToLower() -eq "y") {
   Install-Base-Win-Tools
+
+  $newProfile = Read-Host -Prompt "Do you wish to copy your PowerShell profile? [y/n]"
+  if ($newProfile.ToLower() -eq "y") {
+    Copy-Profile
+  }
 }
 
 Write-Host
